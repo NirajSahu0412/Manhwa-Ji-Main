@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manhwa_ji/components/detail_screen/manhwa_chapters.dart';
 import 'package:manhwa_ji/components/detail_screen/manhwa_description.dart';
 import 'package:manhwa_ji/components/detail_screen/manhwa_info.dart';
 import 'package:web_scraper/web_scraper.dart';
@@ -25,6 +26,7 @@ class _DetailScreenState extends State<DetailScreen> {
   late List<Map<String, dynamic>> manhwaAuthor;
   late List<Map<String, dynamic>> manhwaDescription;
   late List<Map<String, dynamic>> manhwaChapterList;
+  late List<Map<String, dynamic>> manhwaChapterTimeList;
 
   //https://toonily.com/webtoon/mercenary-enrollment/
   void fetchManhwaInfo() async {
@@ -38,7 +40,12 @@ class _DetailScreenState extends State<DetailScreen> {
           .getElement('div.post-status > div > div.summary-content', ['title']);
       manhwaDescription = webScrapper
           .getElement('div.description-summary > div > p', ['title']);
+      manhwaChapterList = webScrapper.getElement(
+          'div.listing-chapters_wrap.cols-2 > ul > li > a', ['href']);
+      manhwaChapterTimeList = webScrapper
+          .getElement('div.listing-chapters_wrap.cols-2 > ul > li > span', []);
 
+      print(manhwaChapterTimeList.toString().trim());
       setState(() {
         infoLoaded = true;
       });
@@ -67,7 +74,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      MangaInfo(
+                      ManhwaInfo(
                         manhwaImage: widget.manhwaImage,
                         manhwaStatus:
                             manhwaStatus[1]['title'].toString().trim(),
@@ -79,7 +86,11 @@ class _DetailScreenState extends State<DetailScreen> {
                             manhwaDescription[0]['title'].toString().trim(),
                         manhwaGenres:
                             manhwaGenres[0]['title'].toString().trim(),
-                      )
+                      ),
+                      ManhwaChapters(
+                        manhwaChapterList: manhwaChapterList,
+                        manhwaChapterTimeList: manhwaChapterTimeList,
+                      ),
                     ],
                   ),
                 ),

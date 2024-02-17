@@ -14,6 +14,27 @@ class ManhwaDescription extends StatefulWidget {
 }
 
 class _ManhwaDescriptionState extends State<ManhwaDescription> {
+  bool readMore = false;
+  void toggleRead() {
+    setState(() {
+      readMore = !readMore;
+    });
+  }
+
+  Widget overMultiLine() {
+    return (widget.manhwaDescription).split('').length > 30
+        ? GestureDetector(
+            onTap: toggleRead,
+            child: Text(
+              readMore ? "Read less" : "Read more",
+              style: TextStyle(
+                color: Colors.blue,
+              ),
+            ),
+          )
+        : Container();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -23,9 +44,10 @@ class _ManhwaDescriptionState extends State<ManhwaDescription> {
         child: SizedBox(
           width: screenSize.width - 10,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
+                Divider(),
                 Text(
                   "Description",
                   style: TextStyle(
@@ -33,16 +55,21 @@ class _ManhwaDescriptionState extends State<ManhwaDescription> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                Divider(),
                 Text(
                   widget.manhwaDescription,
                   style: TextStyle(
                     fontSize: 16,
                   ),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.justify,
+                  maxLines: readMore ? 2000 : 3,
+                  overflow: TextOverflow.ellipsis,
                 ),
+                overMultiLine(),
                 SizedBox(
                   height: 15,
                 ),
+                Divider(),
                 Text(
                   "Genres",
                   style: TextStyle(
@@ -50,6 +77,7 @@ class _ManhwaDescriptionState extends State<ManhwaDescription> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                Divider(),
                 Text(
                   widget.manhwaGenres,
                   style: TextStyle(

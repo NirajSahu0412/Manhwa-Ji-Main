@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:manhwa_ji/widgets/info_button.dart';
 import 'package:manhwa_ji/widgets/vertical_divider.dart';
 
-class MangaInfo extends StatelessWidget {
+class ManhwaInfo extends StatelessWidget {
   final String manhwaImage, manhwaStatus, manhwaAuthor;
 
-  const MangaInfo({
+  const ManhwaInfo({
     super.key,
     required this.manhwaImage,
     required this.manhwaStatus,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manhwa_ji/screens/detail_screen.dart';
 
 class ManhwaCard extends StatelessWidget {
   final String manhwaImg, manhwaTitle, manhwaUrl;
@@ -14,7 +15,19 @@ class ManhwaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return InkWell(
-      onTap: (){
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return DetailScreen(
+                manhwaImage: manhwaImg,
+                manhwaTitle: manhwaTitle,
+                manhwaUrl: manhwaUrl,
+              );
+            },
+          ),
+        );
         print(manhwaImg);
         print(manhwaTitle);
         print(manhwaUrl);
