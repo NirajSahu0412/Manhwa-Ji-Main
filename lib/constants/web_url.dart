@@ -1,4 +1,4 @@
 class WebUrl{
   WebUrl._();
-  static const String url = "https://toonily.com/";
+  static const String url = "https://toonily.com";
 }

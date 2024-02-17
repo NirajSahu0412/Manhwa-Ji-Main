@@ -1,5 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:manhwa_ji/screens/detail_screen.dart';
 import 'package:manhwa_ji/screens/home_screen.dart';
 
 void main() {
@@ -22,7 +23,16 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       themeMode: ThemeMode.system,
-      home: HomeScreen(),
+      // home: const HomeScreen(),
+      home: const DetailScreen(
+        manhwaImage:
+            "https://toonily.com/wp-content/uploads/2021/01/Read-Mercenary-Enrollment-manhwa-for-free-175x238.jpeg",
+        manhwaTitle: "Mercenary Enrollment",
+        manhwaUrl: "https://toonily.com/webtoon/mercenary-enrollment/",
+      ),
     );
   }
 }
+//I/flutter (19282): https://toonily.com/wp-content/uploads/2021/01/Read-Mercenary-Enrollment-manhwa-for-free-175x238.jpeg
+// I/flutter (19282): Mercenary Enrollment
+// I/flutter (19282): https://toonily.com/webtoon/mercenary-enrollment/
