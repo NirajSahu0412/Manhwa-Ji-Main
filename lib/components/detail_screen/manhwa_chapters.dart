@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manhwa_ji/constants/colors.dart';
+import 'package:manhwa_ji/screens/content_screen.dart';
 
 class ManhwaChapters extends StatelessWidget {
   final List<Map<String, dynamic>> manhwaChapterList;
@@ -27,9 +28,7 @@ class ManhwaChapters extends StatelessWidget {
             width: screenSize.width - 10,
             child: Material(
               child: InkWell(
-                onTap: () {
-                  print(manhwaChapterList[index]['attributes']['href']);
-                },
+                onTap: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

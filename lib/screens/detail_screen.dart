@@ -28,7 +28,6 @@ class _DetailScreenState extends State<DetailScreen> {
   late List<Map<String, dynamic>> manhwaChapterList;
   late List<Map<String, dynamic>> manhwaChapterTimeList;
 
-  //https://toonily.com/webtoon/mercenary-enrollment/
   void fetchManhwaInfo() async {
     String tempUrl = '${widget.manhwaUrl.split('.com')[0]}.com';
     String tempRoute = widget.manhwaUrl.split('.com')[1];
@@ -45,7 +44,6 @@ class _DetailScreenState extends State<DetailScreen> {
       manhwaChapterTimeList = webScrapper
           .getElement('div.listing-chapters_wrap.cols-2 > ul > li > span', []);
 
-      print(manhwaChapterTimeList.toString().trim());
       setState(() {
         infoLoaded = true;
       });
@@ -96,7 +94,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
               ),
             )
-          : Center(
+          : const Center(
               child: CircularProgressIndicator(),
             ),
     );
